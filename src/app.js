@@ -16,7 +16,7 @@ var ingredients = {
 
 //Current state of the ingredients in the burger
 var state = {
-  Patty: false,
+  Patty: true,
   Cheese: true,
   Tomatoes: true,
   Onions: true,
@@ -30,7 +30,7 @@ function renderAll() {
   renderTomatoes();
   renderOnions();
   renderLettuce();
-  // renderButtons();
+  renderButtons();
   //renderIngredientsBoard();
 
   renderPrice();
@@ -89,20 +89,19 @@ function renderLettuce() {
 
 document.querySelector(".btn-patty").onclick = function () {
   state.Patty = !state.Patty;
-  console.log(wholeWheatBun)
-  renderPatty();
+  renderAll();
 };
 
 // Trial 2 - Setup event listener for the cheese button
 document.querySelector(".btn-cheese").onclick = function () {
   state.cheese = !state.cheese;
-  renderCheese();
+  renderAll();
 };
 
 // Trial 2 - Setup event listener for the tomatoes button
 document.querySelector(".btn-tomatoes").onclick = function () {
   state.tomato = !state.tomato;
-  renderTomatoes();
+  renderAll();
 };
 
 
@@ -110,7 +109,7 @@ document.querySelector(".btn-tomatoes").onclick = function () {
 
 document.querySelector(".btn-onions").onclick = function () {
   state.onion = !state.onion;
-  renderOnions();
+  renderAll();
 };
 
 
@@ -118,18 +117,39 @@ document.querySelector(".btn-onions").onclick = function () {
 
 document.querySelector(".btn-lettuce").onclick = function () {
   state.lettuce = !state.lettuce;
-  renderLettuce();
+  renderAll();
 };
 
-renderAll();
+
 
 
 //Challenge 1 - Add/Remove the class active to the buttons based on state
 function renderButtons() {
-  if (state.lettuce) {
-    var element = document.getElementsByClassName("active");
-    element.classList.remove("button-active");
-  }
+  /*var items = ["btn-cheese", "btn-patty", "btn-tomatoes", "btn-onions", "btn-lettuce"]
+  var ingredient = ["Patty", "Cheese", "Tomatoes", "Onions", "Lettuce"]
+  for (var index = 0; index < items.length; index++) {
+    var item = document.querySelector(".button." + items[index]);
+    console.log(item)
+    addOrRemove(state[ingredient[index]], item);
+  }*/
+
+  var patty = document.querySelector(".btn-patty");
+  var cheese = document.querySelector(".btn-cheese");
+  //var patty = document.querySelector(".button.btn-tomatoes.active");
+  //var patty = document.querySelector(".button.btn-onions.active");
+  //var patty = document.querySelector(".button.btn-lettuce.active");
+  //patty.classList.remove("active");
+  addOrRemove(state.Patty, patty);
+  addOrRemove(state.Cheese, cheese);
+}
+
+
+function addOrRemove(st, item) {
+  st = !st;
+  if (st)
+    return item.classList.add("active");
+  else
+    return item.classList.remove("active");
 }
 
 
@@ -142,7 +162,6 @@ function renderButtons() {
 
 function renderPrice() {
   if (state.Patty)
-    wholeWheatBun += ingredients.Patty;
-  else
     wholeWheatBun -= ingredients.Patty;
+  console.log(wholeWheatBun);
 }

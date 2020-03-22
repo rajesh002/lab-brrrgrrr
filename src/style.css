@@ -118,13 +118,11 @@ body {
 }
 
 .button.active {
-
     width: 112px;
     height: 58px;
     background-color: #ffd058;
     line-height: 58px;
     text-align: center;
-
 }
 
 .Rectangle3 {
